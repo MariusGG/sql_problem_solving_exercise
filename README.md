@@ -127,13 +127,13 @@ To identify which rows are identical, I have built this mark down structure belo
     | Gross Sales Price |       | Distribution Cost |         | Gross Sales Price |       | Distribution Cost |
 
 I looked at this structure as a one-to-many relationship where each node has only one parent but possibly multiple children.
-This structure can than be used across many products and I am able to identify the overlapping dates easily.
+This structure can then be used across many products and I am able to identify the overlapping dates easily.
 The table its self looks like a relational database because of the uniq id for rows.
 I was a bit thrown by the formate of the dates but after some google and looking through old projects.
 I remembered the formats for dates in a database are displayed this way.
-All products are Widgets, there are only two Customers (Tesco & Asada) and the means of Measure are two also ( Gross Sales Price & Distribution Cost ).
-Within the table, I noticed in ROW 7 the "Valid From Day" & "Valid To Day" have long single digits which I believe suggests a NULL value.
-I think the values were not given and an SQL command to amend that could be *ALTER TABLE exceedra
+All products are Widgets, there are only two Customers (Tesco & Asada) and the means of Measure are ( Gross Sales Price & Distribution Cost ).
+Within the table, I noticed in ROW 7 the "Valid From Day" & "Valid To Day" have long repeated digit which I believe suggests a NULL value.
+I think the values were not given and a SQL command to amend that could be *ALTER TABLE exceedra
 MODIFY Value int NOT NULL;* to make sure a value is entered in this column.
 
 The structure above should allow me to then get a split set of data which have a hierarchical structure as:
@@ -141,7 +141,7 @@ The structure above should allow me to then get a split set of data which have a
   * *Product => Customer => Measure => Value => Valid From Day*
 
 
-    Tesco - Gross Sales Price
+  Tesco - Gross Sales Price
 
   | Value | Valid From Day | Valid To Day |
   |-------|----------------|--------------|
@@ -157,14 +157,14 @@ The structure above should allow me to then get a split set of data which have a
   | 6     | 20130301       | 20140401     |
   | 7     | 20131231       | 20150101     |
 
-    Asda - Gross Sales Price
+  Asda - Gross Sales Price
 
   | Value | Valid From Day | Valid To Day |
   |-------|----------------|--------------|
   | 100   | 00000000       | 99999999     |
   | 200   | 20131231       | 20150101     |
 
-    Asda - Distribution Cost
+  Asda - Distribution Cost
 
   | Value | Valid From Day | Valid To Day |
   |-------|----------------|--------------|
@@ -182,16 +182,32 @@ I wasn't sure how to best approach this and googled a few SQL queriers.
 
 *( I have slightly changed the format to make it easier to read )*
 
+Tesco - Gross Sales Price
 
 | Value | Valid From Day | Valid To Day |
 | :---: | :------------: | :----------: |
 | 1     | 2013-01-01     | 2013-04-01   |
 | 1.5   | 2013-03-01     | 2013-12-31   |
 
+Tesco - Distribution Cost
+
 | Value | Valid From Day | Valid To Day |
 | :---: | :------------: | :----------: |
 | 5     | 2013-01-01     | 2013-04-01   |
 | 6     | 2013-03-01     | 2014-04-01   |
 
-I order for me to find the overlapping data, I would need to first query the database where if a rows Products, Customers and Measures are equal.
+In order for me to find the overlapping dates, I would need to first query the database where if a rows Products, Customers and Measures are equal.
 Then check if the dates overlap and store it into a new table or a temporary table, which I could probably use to update the original table.
+
+
+```
+- Get first row in table
+- Select from table rows where product, customer and measure are the same
+    • store these rows in groups
+- go through all rows in their groups
+- find the ones where dates overlap
+```
+
+It seems the first product starts on 2013-01-01 and the second product starts on the 2013-03-01. But unfortunately the first product runs over the second product and needs to probably last just a month.
+So I need to find a way of changing the "Valid To Day" so it would be less than  the "Valid From Day" from the 2nd product.
+It would seem as if the "Value" column has its role in how I can best approach this.
