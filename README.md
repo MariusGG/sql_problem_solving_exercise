@@ -141,7 +141,7 @@ The structure above should allow me to then get a split set of data which have a
   * *Product => Customer => Measure => Value => Valid From Day*
 
 
-    *Tesco - Gross Sales Price*
+    Tesco - Gross Sales Price
 
   | Value | Valid From Day | Valid To Day |
   |-------|----------------|--------------|
@@ -149,7 +149,7 @@ The structure above should allow me to then get a split set of data which have a
   | 1.5   | 20130301       | 20131231     |
   | 2     | 20130401       | 20150101     |
 
-    *Tesco - Distribution Cost*
+    Tesco - Distribution Cost
 
   | Value | Valid From Day | Valid To Day |
   |-------|----------------|--------------|
@@ -157,14 +157,14 @@ The structure above should allow me to then get a split set of data which have a
   | 6     | 20130301       | 20140401     |
   | 7     | 20131231       | 20150101     |
 
-    *Asda - Gross Sales Price*
+    Asda - Gross Sales Price
 
   | Value | Valid From Day | Valid To Day |
   |-------|----------------|--------------|
   | 100   | 00000000       | 99999999     |
   | 200   | 20131231       | 20150101     |
 
-    *Asda - Distribution Cost*
+    Asda - Distribution Cost
 
   | Value | Valid From Day | Valid To Day |
   |-------|----------------|--------------|
