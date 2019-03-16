@@ -177,4 +177,21 @@ The structure above should allow me to then get a split set of data which have a
 
 ## Solution
 
-Having looked at the data from the table, I had noticed the overlapping date ranges for rows "1 & 2" and "5 & 6". I wasn't sure how to best approach this and googled a few SQL queriers.
+Having looked at the data from the table, I had noticed the overlapping date ranges for rows "1 & 2" and "5 & 6".
+I wasn't sure how to best approach this and googled a few SQL queriers.
+
+*( I have slightly changed the format to make it easier to read )*
+
+
+| Value | Valid From Day | Valid To Day |
+| :---: | :------------: | :----------: |
+| 1     | 2013-01-01     | 2013-04-01   |
+| 1.5   | 2013-03-01     | 2013-12-31   |
+
+| Value | Valid From Day | Valid To Day |
+| :---: | :------------: | :----------: |
+| 5     | 2013-01-01     | 2013-04-01   |
+| 6     | 2013-03-01     | 2014-04-01   |
+
+I order for me to find the overlapping data, I would need to first query the database where if a rows Products, Customers and Measures are equal.
+Then check if the dates overlap and store it into a new table or a temporary table, which I could probably use to update the original table.
