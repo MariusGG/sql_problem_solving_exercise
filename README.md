@@ -199,15 +199,29 @@ Tesco - Distribution Cost
 In order for me to find the overlapping dates, I would need to first query the database where if a rows Products, Customers and Measures are equal.
 Then check if the dates overlap and store it into a new table or a temporary table, which I could probably use to update the original table.
 
-
+( pseudo code)
 ```
 - Get first row in table
 - Select from table rows where product, customer and measure are the same
     • store these rows in groups
 - go through all rows in their groups
-- find the ones where dates overlap
+
 ```
 
 It seems the first product starts on 2013-01-01 and the second product starts on the 2013-03-01. But unfortunately the first product runs over the second product and needs to probably last just a month.
 So I need to find a way of changing the "Valid To Day" so it would be less than  the "Valid From Day" from the 2nd product.
 It would seem as if the "Value" column has its role in how I can best approach this.
+
+In order to make this process reusable for future use and as generic as possible. I feel I would need to consider if its a big multinational company needing to improve their revenue and would need to increase their shipments but the old valued products are overlapping newly valued products.
+
+
+( my pseudo code to solve the overlapping dates, continuing from the above pseudo code )
+
+```
+- if Product => Customer => Measure are equal
+- check if "Valid To Day" is >= to the next products "Valid From Day"
+- if so update current products "Valid To Day" date to equal next products "Valid From Day" -1
+- and store in a temporary table
+- then update current table
+
+```
