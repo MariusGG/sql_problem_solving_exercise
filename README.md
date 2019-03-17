@@ -5,7 +5,7 @@
 Create a process which solves parts A and B below; and then answer part C. Document your work using either a flowchart, pseudo-code, a written sequence of steps, or a programming language you are familiar with. The table below is example data, but your solution should be generic and hence applicable to any data supplied in this format.
 
 	* Identify which pairs of rows have identical Products, Customers and Measures,
-  and overlapping date ranges; e.g., as per rows 1 and 2.
+  	and overlapping date ranges; e.g., as per rows 1 and 2.
 
 	* Of the rows identified in part A, update the rows to make the date ranges not overlap.
 
@@ -140,16 +140,15 @@ The structure above should allow me to then get a split set of data which have a
 
   * *Product => Customer => Measure => Value => Valid From Day*
 
-
-  Tesco - Gross Sales Price
-
+Tesco - Gross Sales Price
+ 
   | Value | Valid From Day | Valid To Day |
   |-------|----------------|--------------|
   | 1     | 20130101       | 20130401     |
   | 1.5   | 20130301       | 20131231     |
   | 2     | 20130401       | 20150101     |
 
-    Tesco - Distribution Cost
+Tesco - Distribution Cost
 
   | Value | Valid From Day | Valid To Day |
   |-------|----------------|--------------|
@@ -157,14 +156,14 @@ The structure above should allow me to then get a split set of data which have a
   | 6     | 20130301       | 20140401     |
   | 7     | 20131231       | 20150101     |
 
-  Asda - Gross Sales Price
+Asda - Gross Sales Price
 
   | Value | Valid From Day | Valid To Day |
   |-------|----------------|--------------|
   | 100   | 00000000       | 99999999     |
   | 200   | 20131231       | 20150101     |
 
-  Asda - Distribution Cost
+Asda - Distribution Cost
 
   | Value | Valid From Day | Valid To Day |
   |-------|----------------|--------------|
